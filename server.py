@@ -19,3 +19,19 @@ class Server(threading.Thread):
 
         sock.listen(1)
         print('Listening at', sock.getsocketname())
+
+        while True:
+
+            # Accept a new connectino
+            sc, sockname = sock.accept()
+            print('Accepted a new connection from {} to {}'.format(sc.getpeername(), sc.getsockname()))
+
+            # Create  a new thread
+            server_socket = ServerSocket(sc, sockname, self)
+
+            # Start a new thread
+            server_socket.start()
+
+            # Add thread to active connection
+            self.connections.append(server_socket)
+            print('Ready to receive messages from', sc.getpeername())
