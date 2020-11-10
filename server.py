@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 import threading
 import socket
@@ -23,7 +24,7 @@ class Server(threading.Thread):
 
         while True:
 
-            # Accept a new connectino
+            # Accept a new connection
             sc, sockname = sock.accept()
             print('Accepted a new connection from {} to {}'.format(sc.getpeername(), sc.getsockname()))
 
